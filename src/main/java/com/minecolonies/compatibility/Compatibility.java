@@ -1,7 +1,9 @@
 package com.minecolonies.compatibility;
 
-import com.minecolonies.compatibility.tinkers.ToolBrokenCheck;
+import com.minecolonies.compatibility.tinkers.ToolCheck;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -25,10 +27,15 @@ public final class Compatibility
      */
     public static boolean getMiningLevelCompatibility(@Nullable final ItemStack stack, @Nullable final String tool)
     {
-        if (ToolBrokenCheck.checkTinkersBroken(stack))
+        if (ToolCheck.checkTinkersBroken(stack))
         {
             return false;
         }
         return true;
+    }
+
+    public static boolean isTinkersWeapon(@NotNull final Item item)
+    {
+        return ToolCheck.isTinkersWeapon(item);
     }
 }

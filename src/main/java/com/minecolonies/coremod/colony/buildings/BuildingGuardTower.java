@@ -1,6 +1,7 @@
 package com.minecolonies.coremod.colony.buildings;
 
 import com.minecolonies.blockout.views.Window;
+import com.minecolonies.compatibility.Compatibility;
 import com.minecolonies.coremod.achievements.ModAchievements;
 import com.minecolonies.coremod.client.gui.WindowHutGuardTower;
 import com.minecolonies.coremod.colony.CitizenData;
@@ -325,7 +326,8 @@ public class BuildingGuardTower extends AbstractBuildingWorker
                 && (stack.getItem() instanceof ItemArmor
                 || stack.getItem() instanceof ItemTool
                 || stack.getItem() instanceof ItemSword
-                || stack.getItem() instanceof ItemBow);
+                || stack.getItem() instanceof ItemBow
+                || Compatibility.isTinkersWeapon(stack.getItem()));
     }
 
     /**
