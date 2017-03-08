@@ -1,6 +1,7 @@
 package com.minecolonies.compatibility.tinkers;
 
 import net.minecraft.item.Item;
+import net.minecraft.potion.PotionEffect;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -18,9 +19,9 @@ public class ToolProxy
         return false;
     }
 
-    public String[] getEffectsOfWeapon(@NotNull final Item item)
+    public PotionEffect[] getEffectsOfWeapon(@NotNull final Item item)
     {
-        String[] effects = {};
+        PotionEffect[] effects = {};
         return effects;
     }
 }

@@ -3,6 +3,7 @@ package com.minecolonies.compatibility.tinkers;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.fml.common.Optional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -74,10 +75,10 @@ public final class ToolCheck extends ToolProxy
 
     @Override
     @Optional.Method(modid = "tconstruct")
-    public String[] getEffectsOfWeapon(@NotNull final Item item)
+    public PotionEffect[] getEffectsOfWeapon(@NotNull final Item item)
     {
         //placeholder
-        String[] effects = {"Place","holder"};
+        PotionEffect[] effects = {};
         return effects;
     }
 }
