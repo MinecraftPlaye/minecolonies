@@ -1,5 +1,10 @@
 package com.minecolonies.compatibility.tinkers;
 
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.inventory.InventoryBasic;
+import net.minecraft.inventory.Slot;
+import net.minecraft.inventory.SlotCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -7,7 +12,14 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.fml.common.Optional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.w3c.dom.Attr;
+import slimeknights.tconstruct.TinkerIntegration;
+import slimeknights.tconstruct.tools.TinkerModifiers;
 import slimeknights.tconstruct.tools.melee.TinkerMeleeWeapons;
+
+import javax.tools.Tool;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class is to store a check to see if a tinker's tool is broken.
@@ -51,6 +63,11 @@ public final class ToolCheck extends ToolProxy
         return new ToolCheck().checkForTinkersWeapon(item);
     }
 
+
+    public static List<AttributeModifier> getModifiersOfWeapon(@NotNull final ItemStack stack, @NotNull final EntityEquipmentSlot slot)
+    {
+        return ToolCheck.getModifiersOfWeapon(stack,slot);
+    }
     /**
      * Check if item is tinkers weapon.
      *
@@ -75,10 +92,14 @@ public final class ToolCheck extends ToolProxy
 
     @Override
     @Optional.Method(modid = "tconstruct")
-    public PotionEffect[] getEffectsOfWeapon(@NotNull final Item item)
+    public List<AttributeModifier> checkModifiersOfWeapon(@NotNull final ItemStack stack, @NotNull final EntityEquipmentSlot slot)
     {
-        //placeholder
-        PotionEffect[] effects = {};
+        List<AttributeModifier> effects = new ArrayList<AttributeModifier>();
+        if (stack.getItem().getAttributeModifiers(slot,stack) == TinkerModifiers.modBaneOfArthopods)
+        {
+            //placeholder.
+        }
+
         return effects;
     }
 }

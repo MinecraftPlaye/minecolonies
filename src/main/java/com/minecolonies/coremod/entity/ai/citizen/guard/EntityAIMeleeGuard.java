@@ -1,5 +1,6 @@
 package com.minecolonies.coremod.entity.ai.citizen.guard;
 
+import com.minecolonies.compatibility.Compatibility;
 import com.minecolonies.coremod.colony.jobs.JobGuard;
 import com.minecolonies.coremod.entity.ai.util.AIState;
 import com.minecolonies.coremod.entity.ai.util.AITarget;
@@ -8,6 +9,7 @@ import com.minecolonies.coremod.util.Utils;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.util.DamageSource;
@@ -163,24 +165,26 @@ public class EntityAIMeleeGuard extends AbstractEntityAIGuard
 
     private void attackEntity(@NotNull final EntityLivingBase entityToAttack, final float baseDamage)
     {
-        double damgeToBeDealt = baseDamage;
+        double damageToBeDealt = baseDamage;
 
         if (worker.getHealth() <= 2)
         {
-            damgeToBeDealt *= 2;
+            damageToBeDealt *= 2;
         }
 
         final ItemStack heldItem = worker.getHeldItem(EnumHand.MAIN_HAND);
         if (heldItem != null)
         {
-            if (heldItem.getItem() instanceof ItemSword)
+            if (heldItem.getItem() instanceof ItemSword || Compatibility.isTinkersWeapon(heldItem.getItem()))
             {
-                damgeToBeDealt += ((ItemSword) heldItem.getItem()).getDamageVsEntity();
+                damageToBeDealt += ((ItemSword) heldItem.getItem()).getDamageVsEntity();
             }
-            damgeToBeDealt += EnchantmentHelper.getModifierForCreature(heldItem, targetEntity.getCreatureAttribute());
+            damageToBeDealt += EnchantmentHelper.getModifierForCreature(heldItem, targetEntity.getCreatureAttribute());
+            damageToBeDealt += Compatibility.getModifier(heldItem, EntityEquipmentSlot.MAINHAND);
+
         }
 
-        targetEntity.attackEntityFrom(new DamageSource(worker.getName()), (float) damgeToBeDealt);
+        targetEntity.attackEntityFrom(new DamageSource(worker.getName()), (float) damageToBeDealt);
         targetEntity.setRevengeTarget(worker);
 
         final int fireAspectModifier = EnchantmentHelper.getFireAspectModifier(worker);

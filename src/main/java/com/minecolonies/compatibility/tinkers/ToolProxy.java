@@ -1,8 +1,13 @@
 package com.minecolonies.compatibility.tinkers;
 
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
-import net.minecraft.potion.PotionEffect;
+import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This is the fallback for when tinkers is not present!
@@ -19,9 +24,9 @@ public class ToolProxy
         return false;
     }
 
-    public PotionEffect[] getEffectsOfWeapon(@NotNull final Item item)
+    public List<AttributeModifier> checkModifiersOfWeapon(@NotNull final ItemStack stack, @NotNull final EntityEquipmentSlot slot)
     {
-        PotionEffect[] effects = {};
+        List<AttributeModifier> effects = new ArrayList<AttributeModifier>();
         return effects;
     }
 }
