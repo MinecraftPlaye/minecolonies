@@ -17,4 +17,10 @@ public class ToolProxy
     {
         return false;
     }
+
+    public String[] getEffectsOfWeapon(@NotNull final Item item)
+    {
+        String[] effects = {};
+        return effects;
+    }
 }

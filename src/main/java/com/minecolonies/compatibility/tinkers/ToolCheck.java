@@ -70,4 +70,14 @@ public final class ToolCheck extends ToolProxy
                  || item == TinkerMeleeWeapons.cleaver
                  || item == TinkerMeleeWeapons.cutlass;
     }
+
+
+    @Override
+    @Optional.Method(modid = "tconstruct")
+    public String[] getEffectsOfWeapon(@NotNull final Item item)
+    {
+        //placeholder
+        String[] effects = {"Place","holder"};
+        return effects;
+    }
 }
